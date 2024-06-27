@@ -119,7 +119,11 @@ elif page == "Prediksi":
             margin: 0;
             padding: 0;
             font-size: 14px;
-
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
         }
         </style>
         """, unsafe_allow_html=True)
