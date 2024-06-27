@@ -47,7 +47,21 @@ true_positives = np.sum(np.logical_and(y_train == 1, y_pred_train == 1))
 false_negatives = np.sum(np.logical_and(y_train == 1, y_pred_train == 0))
 sensitivity = true_positives / (true_positives + false_negatives)
 
-fpr, tpr, _ = roc_curve(y_train, model.predict_proba(X_train)[:, 1])
+sorted_indices = np.argsort(y_pred)[::-1]
+y_test_sorted = y_test[sorted_indices]
+y_pred_sorted = y_pred[sorted_indices]
+
+fpr = []
+tpr = []
+for i in range(len(y_test_sorted) + 1):
+    tp = sum(y_test_sorted[:i])
+    fp = i - tp
+    fn = sum(y_test_sorted[i:])
+    tn = len(y_test_sorted) - i - fn
+    fpr.append(fp / (fp + tn))
+    tpr.append(tp / (tp + fn))
+
+# Hitung AUC
 auc_score = auc(fpr, tpr)
 
 # Statistik deskriptif
