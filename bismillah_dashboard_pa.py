@@ -32,7 +32,7 @@ y_test = test_data['TX_FRAUD']
 
 # Train model
 base_estimator = DecisionTreeClassifier(max_depth=1)
-model = AdaBoostClassifier(base_estimator=base_estimator, n_estimators=50, random_state=42)
+model = AdaBoostClassifier(estimator=base_estimator, n_estimators=50, random_state=42)
 model.fit(X_train, y_train)
 
 # Model metrics
