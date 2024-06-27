@@ -4,4 +4,3 @@ numpy
 matplotlib
 plotly
 scikit-learn
-scikit-learn[ensemble]
